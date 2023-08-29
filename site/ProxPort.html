@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+        [data-testid="stMarkdownContainer"] ul {
+            list-style-position: inside;
+        }
+    </style>
+    <title>ProxPort - The unblocked proxy</title>
+</head>
+<body>
+    <h1>ProxPort - The unblocked proxy</h1>
+    <form>
+        <label for="starting-url">Enter the Starting URL</label>
+        <input type="text" id="starting-url" name="starting-url">
+        <button type="button" id="start-button">Start</button>
+    </form>
+    <p id="redirecting-message"></p>
+    <script>
+        const proxy_url = "https://proxyportal.figs4pigs.repl.co/";
+        const startButton = document.getElementById("start-button");
+        const startingUrlInput = document.getElementById("starting-url");
+        const redirectingMessage = document.getElementById("redirecting-message");
+
+        startButton.addEventListener("click", () => {
+            const startingUrl = startingUrlInput.value;
+            const trimmedUrl = startingUrl.replace("http://", "").replace("https://", "");
+            const fullUrl = proxy_url + trimmedUrl;
+
+            redirectingMessage.textContent = "Redirecting to: " + fullUrl;
+            window.location.href = fullUrl;
+        });
+    </script>
+</body>
+</html>
